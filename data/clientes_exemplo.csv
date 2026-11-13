@@ -1,21 +1,41 @@
-nome,cpf,email,telefone
-Srta. Larissa Pires,304.509.911-48,ana-liviapereira@example.com,33 1967-0847
-Antony Siqueira,937.764.165-99,tfarias@example.net,75 5003-8526
-Rodrigo Andrade,157.921.408-80,joao-felipeleao@example.org,11 9576-1566
-Bella Montenegro,688.547.819-91,lucas-gabrielguerra@example.net,83 1231-8111
-Sarah Moraes,496.597.721-14,pfogaca@example.net,+55 53 0501-4658
-Sr. Thales Pereira,830.703.199-04,ana-sophia57@example.net,+55 86 2588-4829
-Júlia Barros,274.294.289-08,joanasa@example.com,+55 77 4744-3748
-Ana Julia Vasconcelos,137.814.358-22,talmeida@example.com,+55 42 3411-6428
-Theodoro Silva,545.474.239-20,rda-conceicao@example.net,+55 33 3122-5627
-Carlos Eduardo Fonseca,498.059.506-54,antonella52@example.com,86 9123-3087
-Camila Moraes,394.016.998-60,uviana@example.net,+55 91 9690-3484
-Rodrigo Peixoto,060.906.346-46,da-cruzyuri@example.org,51 0282-6308
-Dr. José Pedro Azevedo,444.890.319-20,joao-pedronovais@example.net,89 0143-2931
-Mariah da Conceição,367.088.848-95,qsilveira@example.com,73 9922-3282
-Dra. Maria Vitória Albuquerque,480.320.340-72,eduardaviana@example.com,77 4096-9309
-Davi Miguel Jesus,796.966.282-00,ravi07@example.org,64 2780-3681
-Oliver Cavalcante,453.038.808-50,costelajade@example.org,+55 79 7941-5470
-Dra. Aurora Aragão,769.790.641-42,jose-miguel35@example.com,+55 87 9085-7872
-Sr. Ravi Lucca Almeida,806.077.710-62,rsa@example.net,22 6811-5458
-Mariana Carvalho,076.427.336-15,daraujo@example.com,+55 91 1347-3162
+Nome,CPF,E-mail,Telefone,CEP,CNPJ,RG
+Srta. Ayla Casa Grande,889.788.532-26,allana74@example.com,+55 53 1265-8398,66735723,06.739.404/0001-88,410134831
+Anna Liz Lopes,10361156405,lunnada-conceicao@example.com,22 2644-7897,34174562,85.812.594/0001-98,827815700
+Dr. Vinícius Souza,07181887807,lcardoso@example.org,79 2668-0413,33921770,66126544000102,857174678
+Erick Cavalcante,88928980356,ravi78@example.net,88 1100-3727,72117-506,87.481.058/0001-82,851849878
+Ian Ramos,557.501.265-44,da-costaantonio@example.net,0500 204 3605,28409-973,37.470.086/0001-26,81372899X
+Zoe Peixoto,408.642.182-81,eda-costa@example.org,+55 69 2893-8886,51747512,39.273.458/0001-50,678195663
+Dr. Enrico Cavalcanti,967.016.814-76,amonteiro@example.net,+55 37 6162-6303,45019177,24552744000187,03484899X
+Lara Vargas,360.297.504-53,jose37@example.org,+55 47 0955-1863,85940901,84349987000144,114458753
+Mariane Duarte,287.943.875-67,scasa-grande@example.org,+55 67 7969-3725,39664318,41.054.439/0001-84,76548240X
+Rebeca Pires,94173431147,jose-pedropereira@example.net,92 0540-5369,55996097,02504370000191,573130541
+Nicolas Costela,04723244620,albuquerqueolivia@example.com,0300 791 2422,35923355,04.693.540/0001-59,739330998
+Luiz Felipe Abreu,81639710884,wda-conceicao@example.com,+55 12 5759-2260,58060472,48.828.466/0001-06,068927769
+Dr. Francisco da Conceição,518.939.743-24,isaquesilveira@example.org,62 9230-9891,13864206,75398367000104,749098557
+Carolina Vasconcelos,561.175.448-12,caueviana@example.com,+55 75 3009-0884,97537442,07748465000174,304717940
+Rodrigo Pires,846.926.719-12,claraabreu@example.net,71 0904-5703,29853400,42823641000196,548073739
+Vitor Hugo Cavalcante,72766048960,haparecida@example.net,19 6549-5064,97127-774,88.002.103/0001-31,559713137
+Ana Julia Alves,666.921.310-73,davi-lucasmontenegro@example.net,+55 86 8644-6485,60324494,11.602.300/0001-67,641295996
+Dr. Léo Aparecida,36488906461,goncalvesmariane@example.org,34 3363-7613,93956-981,52.398.378/0001-99,957415722
+Sra. Yasmin Ferreira,52606297601,andradeana-julia@example.net,71 5498-4203,54159655,54.441.172/0001-20,07490582X
+Aurora Pereira,251.337.793-13,joao-pedro14@example.org,79 1325-7008,05263688,19.155.525/0001-24,774345573
+Davi Lucca Cavalcanti,786.181.424-68,thomas61@example.org,+55 16 1266-1848,88626-021,45.335.885/0001-18,143901266
+Thales Sá,94247707159,luiz-otaviobarros@example.org,+55 46 9810-4414,10198063,42236387000120,145748467
+Olivia Peixoto,009.278.114-48,da-matamaria-flor@example.com,+55 92 7159-1378,15719935,24813095000120,634940430
+Cauã Marques,82699348520,mmachado@example.com,81 7393-4072,13517154,55156766000151,658138595
+Ísis Aparecida,62731391219,joanamoreira@example.net,73 5655-6557,23209-313,66591379000160,516053760
+João Guilherme Brito,49230813095,pedro49@example.com,91 0859-2270,66872711,40273896000105,546584962
+Vitor Gabriel Cardoso,26639539209,da-cunhabreno@example.org,+55 48 7723-2646,02103615,58.314.390/0001-54,386519924
+Lucca Albuquerque,34999096854,luiz-fernandoda-rosa@example.net,+55 94 7433-6571,45412252,17786361000108,511797990
+Dra. Raquel Rodrigues,787.247.317-81,ravymoreira@example.com,28 1935-3281,19566644,51.480.309/0001-67,63190427X
+Alice da Cunha,002.214.073-59,joao-guilhermerios@example.org,31 0833-4071,25577414,22750380000114,314922295
+Vicente Silva,26554515623,macedomarina@example.com,82 6650-6081,22094719,55959181000170,793378679
+Yago Azevedo,35248710626,hellena93@example.org,41 1812-0890,36728207,78093957000117,908072958
+Cecilia Araújo,424.426.744-16,ribeirojoao-miguel@example.com,+55 83 7055-8588,28703012,78.151.836/0001-84,058719131
+Dra. Bella Sousa,925.777.092-34,ana-juliacastro@example.net,+55 15 2294-4570,75548-038,59059525000145,299612946
+Bella Almeida,24057069461,calves@example.net,+55 22 7949-6952,98672862,96.522.502/0001-51,212637691
+Ian da Cruz,408.251.556-90,joao-felipe21@example.org,19 5900-2146,32680-668,76425811000104,448726233
+Lavínia Melo,389.231.258-30,mathias00@example.org,+55 12 4428-3233,43032170,97770851000155,389151208
+Mateus Souza,945.776.767-53,nathanmontenegro@example.org,+55 81 2302-1249,44363-801,54041542000131,166155822
+Nina Silva,53659318906,cavalcanterodrigo@example.com,31 5530-7611,12059110,26.885.961/0001-14,654601070
+Sra. Bárbara Vasconcelos,576.240.475-78,diasyasmin@example.com,+55 84 9719-2292,90960224,61.408.311/0001-89,348050720
