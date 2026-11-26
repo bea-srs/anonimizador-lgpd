@@ -10,6 +10,7 @@ def valores(resultado):
 
 # --- helpers de utils ---
 
+
 @pytest.mark.parametrize("sequencia", ["00000000000", "11111111111", "99999999"])
 def test_todos_digitos_iguais_verdadeiro(sequencia):
     assert todos_digitos_iguais(sequencia) is True
@@ -21,6 +22,7 @@ def test_todos_digitos_iguais_falso(sequencia):
 
 
 # --- cpf_valido ---
+
 
 @pytest.mark.parametrize(
     "cpf",
@@ -40,10 +42,10 @@ def test_cpf_valido(cpf):
     [
         "000.000.000-00",
         "11111111111",
-        "111.111.111.-88",  # sequência repetida (mesmo que alguém escreva pontuação estranha)
-        "033.932.260-89",   # segundo dígito verificador inválido
-        "033.932.260-78",   # primeiro dígito verificador inválido
-        "033.932.260-8",    # dígitos insuficientes
+        "111.111.111.-88",  # Sequência repetida com pontuação estranha
+        "033.932.260-89",  # segundo dígito verificador inválido
+        "033.932.260-78",  # primeiro dígito verificador inválido
+        "033.932.260-8",  # dígitos insuficientes
         "033.932.260-880",  # dígitos excedentes
         "",
     ],
@@ -53,6 +55,7 @@ def test_cpf_invalido(cpf):
 
 
 # --- formatos e casos colados ---
+
 
 def test_cpf_colado_apos_prefixo_com_hifen():
     texto = "ID99-033.932.260-88"
@@ -81,9 +84,9 @@ def test_detecta_formatos_validos(texto, esperado):
 @pytest.mark.parametrize(
     "texto",
     [
-        "033932260889",        # 12 dígitos sem pontuação (bloqueado por (?!\d))
-        "ID99-033.932.260-89", # dígitos verificadores inválidos
-        "111.111.111-11",      # todos os dígitos iguais
+        "033932260889",  # 12 dígitos sem pontuação (bloqueado por (?!\d))
+        "ID99-033.932.260-89",  # dígitos verificadores inválidos
+        "111.111.111-11",  # todos os dígitos iguais
     ],
 )
 def test_nao_detecta_cpf_invalido_ou_excedente(texto):
@@ -91,6 +94,7 @@ def test_nao_detecta_cpf_invalido_ou_excedente(texto):
 
 
 # --- posições, deduplicação e ordem ---
+
 
 def test_posicoes_apontam_para_o_trecho_correto():
     texto = "Cadastro ID99-033.932.260-88 e segundo 529.982.247-25."
@@ -115,6 +119,7 @@ def test_cpfs_em_ordem_de_posicao():
 
 
 # --- texto vazio, sem CPF e falsos positivos ---
+
 
 def test_texto_vazio():
     assert detectar_cpfs("") == []

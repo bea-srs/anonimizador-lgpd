@@ -1,5 +1,5 @@
-from pathlib import Path
 import json
+from pathlib import Path
 
 
 def _ler_texto_com_fallback(caminho: Path) -> str:
@@ -31,7 +31,8 @@ def _ler_json(caminho: Path) -> str:
 
 
 def _ler_pdf(caminho: Path) -> str:
-    # Importa pypdf apenas quando um PDF é lido (evita exigir a lib para outros formatos)
+    # Importa pypdf apenas quando um PDF é lido.
+    # Evita exigir a biblioteca para outros formatos.
     from pypdf import PdfReader
 
     # Abre o PDF e extrai o texto de cada página (usa "" se a página não tiver texto)

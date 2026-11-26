@@ -1,4 +1,5 @@
 import pytest
+
 from src.anonimizador.detectores.detector_email import detectar_emails
 
 
@@ -7,6 +8,7 @@ def valores(resultado):
 
 
 # --- detecção de formatos válidos ---
+
 
 @pytest.mark.parametrize(
     "texto, esperado",
@@ -39,6 +41,7 @@ def test_detecta_email_com_pontuacao_ou_quebra_de_linha(texto, esperado):
 
 # --- posições, deduplicação e ordem ---
 
+
 def test_posicoes_apontam_para_o_trecho_correto():
     texto = "Contato principal: ana@exemplo.com, secundário: suporte@empresa.com.br."
     resultado = detectar_emails(texto)
@@ -63,6 +66,7 @@ def test_emails_diferentes_em_ordem_de_posicao():
 
 # --- texto vazio, sem e-mail e falsos positivos ---
 
+
 def test_texto_vazio():
     assert detectar_emails("") == []
 
@@ -74,10 +78,10 @@ def test_texto_vazio():
         "01310-100",
         "+55 (11) 91234-5678",
         "529.982.247-25",
-        "usuario@dominio",        # sem TLD
-        "usuario@.com",           # domínio vazio
-        "@exemplo.com",           # usuário vazio
-        "usuario@exemplo.c",      # TLD com menos de 2 letras
+        "usuario@dominio",  # sem TLD
+        "usuario@.com",  # domínio vazio
+        "@exemplo.com",  # usuário vazio
+        "usuario@exemplo.c",  # TLD com menos de 2 letras
     ],
 )
 def test_nao_detecta_textos_sem_email_valido(texto):

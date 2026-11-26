@@ -1,8 +1,9 @@
-from collections.abc import Iterator
 import re
+from collections.abc import Iterator
 
-from anonimizador.nucleo.utils import extrair_digitos, todos_digitos_iguais
 from anonimizador.nucleo.deteccao import Ocorrencia, coletar_ocorrencias
+from anonimizador.nucleo.utils import extrair_digitos, todos_digitos_iguais
+
 
 def cpf_valido(cpf: str) -> bool:
     # Recebe um CPF (com ou sem pontuação) e devolve True ou False.
@@ -34,7 +35,8 @@ def cpf_valido(cpf: str) -> bool:
 
 
 def detectar_formatos_cpf(texto: str) -> Iterator[re.Match[str]]:
-    # Permite captura colada (ex: ID99-033.932.260-88) sem fatiar números maiores no final
+    # Permite captura colada (ex: ID99-033.932.260-88)
+    # sem fatiar números maiores no final
     return re.finditer(r"(?<!\d)\d{3}\.?\d{3}\.?\d{3}-?\d{2}(?!\d)", texto)
 
 

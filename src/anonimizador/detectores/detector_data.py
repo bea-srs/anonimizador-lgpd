@@ -1,52 +1,66 @@
-from collections.abc import Iterator
-from datetime import date
 import re
+from datetime import date
 
 from anonimizador.nucleo.deteccao import Ocorrencia, coletar_ocorrencias
 
+# Compilado uma vez só (mais eficiente que recompilar a cada chamada)
+# Alternativa 1: dia, mês e ano (15/05/1990 ou 15.05.90)
+# Alternativa 2: ano, mês e dia (1990-05-15)
 
-# Compilado uma vez só (mais eficiente que recompilar a cada chamada).
-# ^ e $ exigem que a string INTEIRA seja uma data, sem texto sobrando.
-# Alternativa 1 (grupos 1-3): dia, mês, ano com 4 ou 2 dígitos, ex: 15/05/1990 ou 15.05.90
-# Alternativa 2 (grupos 4-6): ano com 4 dígitos primeiro, ex: 1990-05-15 (ISO 8601)
-# [/.-] aceita barra, ponto ou hífen como separador
 
-def detectar_formato_data(texto: str) -> Iterator[str]:
-    PADRAO_DATA = re.compile(
-    r"^(?:(\d{1,2})[/.-](\d{1,2})[/.-](\d{4}|\d{2})|(\d{4})[/.-](\d{1,2})[/.-](\d{1,2}))$"
+PADRAO_DATA = re.compile(
+    r"("
+    r"(\d{1,2})/(\d{1,2})/(\d{4}|\d{2})"
+    r"|"
+    r"(\d{1,2})\.(\d{1,2})\.(\d{4}|\d{2})"
+    r"|"
+    r"(\d{1,2})-(\d{1,2})-(\d{4}|\d{2})"
+    r"|"
+    r"(\d{4})-(\d{1,2})-(\d{1,2})"
+    r"|"
+    r"(\d{4})/(\d{1,2})/(\d{1,2})"
+    r")"
 )
 
 
 def data_valida(data: str) -> bool:
     # Primeiro filtro: a string precisa ter o formato de data
-    m = detectar_formato_data.match(data.strip())
+    m = PADRAO_DATA.fullmatch(data.strip())
     if not m:
         return False
 
-    # Se o grupo 1 existe, casou a alternativa dia/mês/ano; senão, casou ano/mês/dia
-    if m.group(1):
-        dia, mes, ano = m.group(1), m.group(2), m.group(3)
+    # Identifica qual formato foi encontrado
+    if m.group(2):
+        dia, mes, ano = m.group(2), m.group(3), m.group(4)
+    elif m.group(5):
+        dia, mes, ano = m.group(5), m.group(6), m.group(7)
+    elif m.group(8):
+        dia, mes, ano = m.group(8), m.group(9), m.group(10)
+    elif m.group(11):
+        ano, mes, dia = m.group(11), m.group(12), m.group(13)
     else:
-        ano, mes, dia = m.group(4), m.group(5), m.group(6)
+        ano, mes, dia = m.group(14), m.group(15), m.group(16)
 
-    # Ano de 4 dígitos: só uma interpretação possível.
-    # Ano de 2 dígitos (ex: "45"): pode ser 1945 ou 2045, então testa os dois séculos.
-    # Isso evita deixar vazar a data de quem nasceu antes de 1969.
+    # Ano de 4 dígitos: uma interpretação.
+    # Ano de 2 dígitos: testa os dois séculos.
     anos = (int(ano),) if len(ano) == 4 else (1900 + int(ano), 2000 + int(ano))
 
     hoje = date.today()
+
     for a in anos:
         try:
-            # date() lança ValueError se o dia/mês não existir (ex: 30/02, 29/02/2001)
             dt = date(a, int(mes), int(dia))
         except ValueError:
-            continue  # essa interpretação do ano não forma data real; tenta a próxima
+            continue
 
-        # Data de nascimento plausível: não pode ser futura nem ter mais de 120 anos
+        # Data não pode ser futura nem ter mais de 120 anos
         if date(hoje.year - 120, 1, 1) <= dt <= hoje:
-            return True  # basta uma interpretação válida para aceitar
+            return True
 
     return False
 
+
 def detectar_datas_nascimento(texto: str) -> list[Ocorrencia]:
-    return coletar_ocorrencias(detectar_formato_data(texto), data_valida, grupo=1)
+    matches = PADRAO_DATA.finditer(texto)
+
+    return coletar_ocorrencias(matches, data_valida, grupo=1)

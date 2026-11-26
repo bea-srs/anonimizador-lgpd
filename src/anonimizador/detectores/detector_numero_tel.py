@@ -1,8 +1,9 @@
-from collections.abc import Iterator
 import re
+from collections.abc import Iterator
 
-from anonimizador.nucleo.utils import extrair_digitos, todos_digitos_iguais
 from anonimizador.nucleo.deteccao import Ocorrencia, coletar_ocorrencias
+from anonimizador.nucleo.utils import extrair_digitos, todos_digitos_iguais
+
 
 def remover_codigo_pais(digitos: str) -> str:
     # Se os dígitos começarem com 55 e tiverem 12 ou 13 dígitos, remove o DDI 55
@@ -52,5 +53,5 @@ def detectar_formatos_telefone(texto: str) -> Iterator[re.Match[str]]:
     return re.finditer(padrao, texto)
 
 
-def detectar_cpfs(texto: str) -> list[Ocorrencia]:
+def detectar_telefones(texto: str) -> list[Ocorrencia]:
     return coletar_ocorrencias(detectar_formatos_telefone(texto), telefone_valido)

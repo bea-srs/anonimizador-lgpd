@@ -1,8 +1,12 @@
 from datetime import date, timedelta
+
 import pytest
 
-from src.anonimizador.detectores.detector_data import data_valida, detectar_datas_nascimento
-from src.anonimizador.nucleo.utils import extrair_digitos
+from anonimizador.detectores.detector_data import (
+    data_valida,
+    detectar_datas_nascimento,
+)
+from anonimizador.nucleo.utils import extrair_digitos
 
 
 def valores(resultado):
@@ -10,6 +14,7 @@ def valores(resultado):
 
 
 # --- data_valida ---
+
 
 @pytest.mark.parametrize(
     "data",
@@ -20,8 +25,8 @@ def valores(resultado):
         "1990/05/15",
         "15-05-1990",
         "15.05.1990",
-        "29/02/2000",       # ano bissexto válido
-        "5/3/1998",         # sem zero à esquerda
+        "29/02/2000",  # ano bissexto válido
+        "05/03/1998",  # sem zero à esquerda
     ],
 )
 def test_data_valida(data):
@@ -31,12 +36,12 @@ def test_data_valida(data):
 @pytest.mark.parametrize(
     "data",
     [
-        "30/02/2000",       # 30 de fevereiro não existe
-        "29/02/2001",       # 2001 não é bissexto
-        "32/01/1995",       # dia inexistente
-        "15/13/1995",       # mês inexistente
-        "00/05/1995",       # dia zero
-        "15/00/1995",       # mês zero
+        "30/02/2000",  # 30 de fevereiro não existe
+        "29/02/2001",  # 2001 não é bissexto
+        "32/01/1995",  # dia inexistente
+        "15/13/1995",  # mês inexistente
+        "00/05/1995",  # dia zero
+        "15/00/1995",  # mês zero
         "",
         "abc",
     ],
@@ -56,6 +61,7 @@ def test_data_antiga_demais_e_invalida():
 
 
 # --- detecção de formatos e casos colados ---
+
 
 @pytest.mark.parametrize(
     "texto, esperado",
@@ -88,6 +94,7 @@ def test_nao_detecta_data_invalida_ou_sem_separador(texto):
 
 # --- posições, deduplicação e ordem ---
 
+
 def test_posicoes_apontam_para_o_trecho_correto():
     texto = "Titular nascido em 15/05/1990 e dependente em 1995-10-20."
     resultado = detectar_datas_nascimento(texto)
@@ -111,6 +118,7 @@ def test_datas_em_ordem_de_posicao():
 
 
 # --- texto vazio e falsos positivos de outros detectores ---
+
 
 def test_texto_vazio():
     assert detectar_datas_nascimento("") == []

@@ -1,8 +1,9 @@
-from collections.abc import Iterator
 import re
+from collections.abc import Iterator
 
-from anonimizador.nucleo.utils import extrair_digitos, todos_digitos_iguais
 from anonimizador.nucleo.deteccao import Ocorrencia, coletar_ocorrencias
+from anonimizador.nucleo.utils import extrair_digitos, todos_digitos_iguais
+
 
 def cep_valido(cep: str) -> bool:
     numero = extrair_digitos(cep)
@@ -21,6 +22,7 @@ def detectar_por_palavra(texto: str) -> Iterator[re.Match[str]]:
         r"(?i)\b(?:cep|zip|zip\s?code|c[oó]digo\s?postal)\b\W{0,5}(?<!\d[.-])(\d{5}-?\d{3})(?!\d)(?![.-]\d)",
         texto,
     )
+
 
 def detectar_ceps(texto: str) -> list[Ocorrencia]:
     por_formato = coletar_ocorrencias(detectar_por_formato(texto), cep_valido)

@@ -14,14 +14,18 @@ def valores(resultado):
 
 # --- remover_codigo_pais ---
 
+
 @pytest.mark.parametrize(
     "digitos, esperado",
     [
-        ("5511912345678", "11912345678"),   # celular com DDI 55 (13 dígitos)
-        ("551133445566", "1133445566"),     # fixo com DDI 55 (12 dígitos)
-        ("5533445566", "5533445566"),       # DDD 55 (Santa Maria/RS) com 10 dígitos -> mantém 55
-        ("11912345678", "11912345678"),     # sem DDI (11 dígitos)
-        ("1133445566", "1133445566"),       # sem DDI (10 dígitos)
+        ("5511912345678", "11912345678"),  # celular com DDI 55 (13 dígitos)
+        ("551133445566", "1133445566"),  # fixo com DDI 55 (12 dígitos)
+        (
+            "5533445566",
+            "5533445566",
+        ),  # DDD 55 (Santa Maria/RS) com 10 dígitos -> mantém 55
+        ("11912345678", "11912345678"),  # sem DDI (11 dígitos)
+        ("1133445566", "1133445566"),  # sem DDI (10 dígitos)
     ],
 )
 def test_remover_codigo_pais(digitos, esperado):
@@ -29,6 +33,7 @@ def test_remover_codigo_pais(digitos, esperado):
 
 
 # --- telefone_valido ---
+
 
 @pytest.mark.parametrize(
     "telefone",
@@ -39,7 +44,7 @@ def test_remover_codigo_pais(digitos, esperado):
         "11912345678",
         "(11) 3344-5566",
         "2125401234",
-        "(55) 3220-1234",       # DDD 55 válido + fixo começando com 3
+        "(55) 3220-1234",  # DDD 55 válido + fixo começando com 3
     ],
 )
 def test_telefone_valido(telefone):
@@ -49,17 +54,17 @@ def test_telefone_valido(telefone):
 @pytest.mark.parametrize(
     "telefone",
     [
-        "(00) 91234-5678",      # DDD inexistente
-        "(10) 91234-5678",      # DDD inexistente
-        "(11) 81234-5678",      # 11 dígitos sem 9 na frente
-        "(11) 1234-5678",       # 10 dígitos começando com 1
-        "(11) 9234-5678",       # 10 dígitos começando com 9
-        "(11) 9123-5678",       # só 8 dígitos após DDD (9 no total)
-        "(11) 91234-56789",     # dígitos a mais
-        "11111111111",          # dígitos repetidos
-        "12345678901",          # sequência óbvia
-        "01234567890",          # sequência óbvia
-        "98765432109",          # sequência óbvia
+        "(00) 91234-5678",  # DDD inexistente
+        "(10) 91234-5678",  # DDD inexistente
+        "(11) 81234-5678",  # 11 dígitos sem 9 na frente
+        "(11) 1234-5678",  # 10 dígitos começando com 1
+        "(11) 9234-5678",  # 10 dígitos começando com 9
+        "(11) 9123-5678",  # só 8 dígitos após DDD (9 no total)
+        "(11) 91234-56789",  # dígitos a mais
+        "11111111111",  # dígitos repetidos
+        "12345678901",  # sequência óbvia
+        "01234567890",  # sequência óbvia
+        "98765432109",  # sequência óbvia
         "",
     ],
 )
@@ -68,6 +73,7 @@ def test_telefone_invalido(telefone):
 
 
 # --- detecção de formatos ---
+
 
 @pytest.mark.parametrize(
     "texto, esperado",
@@ -89,11 +95,11 @@ def test_detecta_formatos_validos(texto, esperado):
 @pytest.mark.parametrize(
     "texto",
     [
-        "119123456789",         # 12 dígitos sem DDI (bloqueado por (?!\d))
-        "(11) 81234-5678",      # celular sem dígito 9
-        "(11) 1234-5678",       # fixo inválido começando com 1
-        "(99) 11111-1111",      # todos os dígitos iguais
-        "12345678901",          # sequência óbvia
+        "119123456789",  # 12 dígitos sem DDI (bloqueado por (?!\d))
+        "(11) 81234-5678",  # celular sem dígito 9
+        "(11) 1234-5678",  # fixo inválido começando com 1
+        "(99) 11111-1111",  # todos os dígitos iguais
+        "12345678901",  # sequência óbvia
     ],
 )
 def test_nao_detecta_telefone_invalido_ou_excedente(texto):
@@ -101,6 +107,7 @@ def test_nao_detecta_telefone_invalido_ou_excedente(texto):
 
 
 # --- posições, deduplicação e ordem ---
+
 
 def test_posicoes_apontam_para_o_trecho_correto():
     texto = "Ligar para +55 (11) 91234-5678 ou para (21) 3344-5566."
@@ -125,6 +132,7 @@ def test_telefones_em_ordem_de_posicao():
 
 
 # --- texto vazio, sem telefone e falsos positivos ---
+
 
 def test_texto_vazio():
     assert detectar_telefones("") == []
