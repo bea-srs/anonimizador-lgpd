@@ -3,14 +3,15 @@ import re
 
 from anonimizador.nucleo.utils import extrair_digitos, todos_digitos_iguais
 from anonimizador.nucleo.deteccao import Ocorrencia, coletar_ocorrencias
+
 def cpf_valido(cpf: str) -> bool:
     # Recebe um CPF (com ou sem pontuação) e devolve True ou False.
-    numero = anonimizador.nucleo.utils.extrair_digitos(cpf)
+    numero = extrair_digitos(cpf)
 
     # Verifica se tem 11 dígitos ou se é uma sequência repetida (ex: 111.111.111-11)
     if len(numero) != 11:
         return False
-    if anonimizador.nucleo.utils.todos_digitos_iguais(numero):
+    if todos_digitos_iguais(numero):
         return False
 
     # Calcula o primeiro dígito verificador
