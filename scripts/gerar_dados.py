@@ -14,7 +14,7 @@ from faker import Faker
 def gerar_texto():
     fake = Faker("pt_BR")  # Geração de dados em formato brasileiro
     
-    with open("data/texto_exemplo.txt", "w", encoding="utf-8") as arquivo:
+    with open("data/exemplos/texto_exemplo.txt", "w", encoding="utf-8") as arquivo:
         # Escreve o título uma única vez no início
         arquivo.write("Relatório de Cadastro de Usuários:\n\n")
         
@@ -30,7 +30,7 @@ def gerar_texto():
 
 def gerar_csv():
     fake = Faker("pt_BR")
-    with open("data/clientes_exemplo.csv", "w", newline="", encoding="utf-8") as arquivo:
+    with open("data/exemplo/clientes_exemplo.csv", "w", newline="", encoding="utf-8") as arquivo:
         escritor = csv.writer(arquivo)
         escritor.writerow(["Nome", "CPF", "E-mail", "Telefone", "CEP", "CNPJ", "RG"])   # cabeçalho, 1 vez, fora do for
         for _ in range(40):

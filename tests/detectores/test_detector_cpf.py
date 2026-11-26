@@ -35,3 +35,4 @@ def test_cpf_com_menos_digitos():
 
 def test_cpf_com_letras():
     assert cpf_valido("abc.def.ghi-jk") is False
+
