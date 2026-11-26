@@ -12,7 +12,7 @@ Não abra uma issue pública. Acesse a aba Security do repositório, clique em "
 
 ## O que vale reportar
 
-O objetivo do projeto é que nenhum dado sensível passe sem anonimização. Por isso, são tratados como vulnerabilidade:
+O objetivo do projeto é que nenhum dado pessoal passe sem anonimização. Por isso, são tratados como vulnerabilidade:
 
 - dado pessoal em um formato suportado que os detectores deixam passar;
 - vazamento de dados pessoais em logs, relatórios ou mensagens de erro;
